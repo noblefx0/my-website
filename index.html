@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#10243b">
+    <title>Noßle◈ — Personal Site</title>
+    <style>
+        :root {
+            --b: #3189f5;
+            --ink: #172438;
+            --muted: #647287
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 85px
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, sans-serif;
+            background: #f5f8fc;
+            color: var(--ink)
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit
+        }
+
+        .bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(120deg, #071525dd, #0c2946bb), url("assets/noble-teddy.png") center 40%/cover;
+            filter: blur(0px)
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: #0b1b2de8;
+            backdrop-filter: blur(14px);
+            z-index: 5;
+            color: white;
+            border-bottom: 1px solid #ffffff20
+        }
+
+        .wrap {
+            width: min(1050px, calc(100% - 34px));
+            margin: auto
+        }
+
+        .nav {
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .brand {
+            font-size: 1.1rem;
+            font-weight: 900;
+            letter-spacing: -.04em;
+            display: flex;
+            gap: 9px;
+            align-items: center
+        }
+
+        .mark {
+            background: var(--b);
+            border-radius: 10px;
+            width: 32px;
+            height: 32px;
+            display: grid;
+            place-items: center
+        }
+
+        .links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            font-size: .85rem;
+            color: #d9e7f7
+        }
+
+        .links a:hover {
+            color: #8fc4ff
+        }
+
+        .follow {
+            background: var(--b);
+            padding: 10px 13px;
+            border-radius: 9px;
+            color: white !important;
+            font-weight: 800
+        }
+
+        .menu {
+            display: none;
+            background: #ffffff12;
+            color: white;
+            border: 1px solid #ffffff40;
+            padding: 8px;
+            border-radius: 8px
+        }
+
+        .hero {
+            min-height: 560px;
+            padding: 70px 0;
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            gap: 38px;
+            align-items: center;
+            color: white
+        }
+
+        .eyebrow {
+            font-size: .72rem;
+            text-transform: uppercase;
+            letter-spacing: .15em;
+            color: #a9d2ff;
+            font-weight: 850
+        }
+
+        .eyebrow i {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            background: #69d5a2;
+            border-radius: 50%;
+            margin-right: 8px
+        }
+
+        h1 {
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
+            line-height: .92;
+            letter-spacing: -.09em;
+            margin: 20px 0
+        }
+
+        h1 span,
+        .blue {
+            color: #76b8ff
+        }
+
+        .intro {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #d7e3f1;
+            max-width: 570px
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 25px
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: .85rem;
+            font-weight: 850
+        }
+
+        .primary {
+            background: var(--b);
+            color: white
+        }
+
+        .outline {
+            border: 1px solid #ffffff55;
+            color: white
+        }
+
+        .profile {
+            padding: 22px;
+            border: 1px solid #ffffff40;
+            border-radius: 20px;
+            background: #ffffff17;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 25px 65px #0003;
+            transform: rotate(.6deg)
+        }
+
+        .profile-top {
+            display: flex;
+            justify-content: space-between;
+            color: #d9e7f7;
+            font-size: .7rem;
+            letter-spacing: .1em;
+            text-transform: uppercase
+        }
+
+        .photo {
+            height: 220px;
+            border-radius: 13px;
+            overflow: hidden;
+            margin: 20px 0;
+            background: #153b63
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 35%
+        }
+
+        .profile-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .profile-bottom h2 {
+            margin: 0;
+            font-size: 1.5rem
+        }
+
+        .profile-bottom p {
+            margin: 4px 0 0;
+            color: #d5e4f5;
+            font-size: .82rem
+        }
+
+        .profile-bottom b {
+            font-size: 2rem;
+            color: #82bdff
+        }
+
+        .section {
+            padding: 72px 0
+        }
+
+        .light-bg {
+            background: #f5f8fc
+        }
+
+        .head {
+            display: flex;
+            justify-content: space-between;
+            gap: 25px;
+            align-items: end;
+            margin-bottom: 26px
+        }
+
+        .kicker {
+            font-size: .7rem;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: #2673c6;
+            font-weight: 900;
+            margin: 0 0 9px
+        }
+
+        .head h2,
+        .about h2 {
+            font-size: clamp(2rem, 5vw, 3.1rem);
+            line-height: 1;
+            letter-spacing: -.07em;
+            margin: 0
+        }
+
+        .head>p {
+            max-width: 420px;
+            color: var(--muted);
+            font-size: .9rem;
+            line-height: 1.7;
+            margin: 0
+        }
+
+        .cards {
+            display: grid;
+            min-width: 0;
+            overflow: hidden;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px
+        }
+
+        .card img {
+            max-width: 100%;
+        }
+
+        .card,
+        .activity {
+            background: #fff;
+            border: 1px solid #dce6f2;
+            border-radius: 16px;
+            padding: 22px;
+            box-shadow: 0 10px 30px #0d28400b
+        }
+
+        .cardtop {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px
+        }
+
+        .icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            background: #e8f2ff;
+            color: #176bc4;
+            font-size: 1.2rem
+        }
+
+        .tag {
+            font-size: .64rem;
+            font-weight: 900;
+            background: #edf5ff;
+            color: #2768a9;
+            border-radius: 20px;
+            padding: 6px 8px
+        }
+
+        .card h3,
+        .activity h3 {
+            margin: 0 0 8px;
+            font-size: 1.12rem
+        }
+
+        .card p,
+        .activity p {
+            margin: 0;
+            color: var(--muted);
+            font-size: .86rem;
+            line-height: 1.7
+        }
+
+        .cardlink {
+            display: inline-block;
+            margin-top: 16px;
+            color: #176bc4;
+            font-size: .82rem;
+            font-weight: 850
+        }
+
+        .activities {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px
+        }
+
+        .activity .num {
+            font-size: .75rem;
+            font-weight: 900;
+            letter-spacing: .1em;
+            color: var(--b)
+        }
+
+        .activity h3 {
+            margin-top: 14px
+        }
+
+        .about {
+            background: #102b49;
+            color: white;
+            border-radius: 20px;
+            padding: clamp(25px, 5vw, 45px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px
+        }
+
+        .about h2 {
+            margin: 10px 0 13px
+        }
+
+        .about p {
+            max-width: 650px;
+            color: #d4e2f1;
+            line-height: 1.8;
+            margin: 0
+        }
+
+        .about .btn {
+            white-space: nowrap
+        }
+
+        footer {
+            padding: 25px 0;
+            color: #d6e4f3;
+            font-size: .78rem
+        }
+
+        .foot {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px
+        }
+
+        footer a {
+            color: #9dcaff;
+            font-weight: 800
+        }
+
+        @media(max-width:740px) {
+            .wrap {
+                width: calc(100% - 28px)
+            }
+
+            .nav {
+                height: 62px
+            }
+
+            .menu {
+                display: block
+            }
+
+
+            .project-image {
+                display: block;
+                width: 100%;
+                max-width: 100%;
+                height: 180px;
+                object-fit: cover;
+                border-radius: 12px;
+                margin-bottom: 16px;
+                box-sizing: border-box;
+            }
+
+
+
+            .links {
+                display: none;
+                position: absolute;
+                top: 61px;
+                left: 0;
+                right: 0;
+                background: #0b1b2d;
+                padding: 12px 18px 18px;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0
+            }
+
+            .links.open {
+                display: flex
+            }
+
+            .links a {
+                padding: 12px 4px
+            }
+
+            .follow {
+                text-align: center;
+                margin-top: 8px
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 60px 0 48px;
+                gap: 32px;
+                min-height: 0
+            }
+
+            h1 {
+                font-size: clamp(3.6rem, 16vw, 5.5rem)
+            }
+
+            .profile {
+                max-width: 440px;
+                width: 100%;
+                justify-self: center
+            }
+
+            .photo {
+                height: 185px
+            }
+
+            .section {
+                padding: 55px 0
+            }
+
+            .head {
+                display: block
+            }
+
+            .head>p {
+                margin-top: 14px
+            }
+
+            .cards,
+            .activities {
+                grid-template-columns: 1fr
+            }
+
+            .about {
+                display: block
+            }
+
+            .about .btn {
+                margin-top: 20px
+            }
+
+            .foot {
+                flex-direction: column
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            html {
+                scroll-behavior: auto
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg"></div>
+    <header>
+        <div class="wrap nav"><a class="brand" href="#home"><span class="mark">◈</span>Noßle◈</a><button class="menu"
+                id="menu">Menu ☰</button>
+            <nav class="links" id="links"><a href="#work">Featured work</a><a href="#activities">Activities</a><a
+                    href="#about">About</a><a class="follow" href="https://x.com/nobleHQ__" target="_blank"
+                    rel="noopener">Follow on X ↗</a></nav>
+        </div>
+    </header>
+    <main id="home">
+        <section class="wrap hero">
+            <div>
+                <div class="eyebrow"><i></i>Creator · Builder · Work in progress</div>
+                <h1>Hey, I'm<br><span>Noßle◈</span></h1>
+                <p class="intro">I build things, explore Web3, and share what I learn along the way. This is my corner
+                    of the internet — a home for my projects, experiments, and proof of work.</p>
+                <div class="actions"><a class="btn primary" href="#work">Explore my work ↓</a><a class="btn outline"
+                        href="https://x.com/nobleHQ__" target="_blank" rel="noopener">Find me on X ↗</a></div>
+            </div>
+            <aside class="profile">
+                <div class="profile-top"><span>Personal archive / 001</span><span>◈</span></div>
+                <!-- Replace noble-teddy.png with your own image filename if you want to change the profile image. Keep the image inside the assets folder. -->
+                <div class="photo"><img src="https://picturetolink.com/i/ng4iNqcnG3.jpg"
+                        alt="Noble's blue teddy character"></div>
+                <div class="profile-bottom">
+                    <div>
+                        <h2>Noßle◈</h2>
+                        <p>Ideas in motion. Work in progress.</p>
+                    </div><b>◈</b>
+                </div>
+            </aside>
+        </section>
+        <section class="section light-bg" id="work">
+            <div class="wrap">
+                <div class="head">
+                    <div>
+                        <p class="kicker">01 / Selected work</p>
+                        <h2>Things I'm <span class="blue">building.</span></h2>
+                    </div>
+                    <p>A few projects and experiments from my workbench. This space will grow as I make, test, and ship
+                        more.</p>
+                </div>
+                <div class="cards">
+                    <!-- ADD A PROJECT: Copy one complete <article class="card">...</article> block below. Update its title, description, tag, icon, and link. -->
+                    <article class="card">
+                        <img class="project-image" src="https://picturetolink.com/i/nMVoJ4zpn3.png"
+                            alt="Screenshot of my 3D Bottle Flip game">
+
+                        <div class="cardtop">
+                            <span class="icon">🎮</span>
+                            <span class="tag">IN PROGRESS</span>
+                        </div>
+
+                        <h3>3D Bottle Flip</h3>
+
+                        <p>A physics-based bottle-flip game exploring realistic movement, turn-based play, and a
+                            smoother mobile experience.
+                        </p>
+
+                        <a class="cardlink" href="https://noblefx0.github.io/bottle-flip-game/" target="_blank"
+                            rel="noopener">Follow the
+                            build ↗</a>
+                    </article>
+
+                    <article class="card">
+                        <img class="project-image" src="https://picturetolink.com/i/wtVjsrEosI.png"
+                            alt="Screenshot of Garri Drop Game">
+
+                        <div class="cardtop">
+                            <span class="icon">🌽</span>
+                            <span class="tag">COMPLETED</span>
+                        </div>
+
+                        <h3>Garri Drop Game</h3>
+
+                        <p>Tap GARRI · avoid 💣 · catch as much GARRI as possible.</p>
+
+                        <a class="cardlink" href="https://noblefx0.github.io/garri-drop-game/" target="_blank"
+                            rel="noopener">Play the game
+                            ↗</a>
+                    </article>
+
+
+                    <!-- You can copy this project card to add another project. -->
+                    <article class="card">
+                        <div class="cardtop"><span class="icon">◈</span><span class="tag">PERSONAL BRAND</span></div>
+                        <h3>Noble's Work Journal</h3>
+                        <p>A personal website for collecting projects, creator activity, ideas, and milestones in one
+                            place.</p><a class="cardlink" href="#about">About this space ↓</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section class="section" id="activities">
+            <div class="wrap">
+                <div class="head">
+                    <div>
+                        <p class="kicker">02 / What I do</p>
+                        <h2>A little bit of <span class="blue">everything.</span></h2>
+                    </div>
+                    <p>The main themes behind what I spend time creating and contributing to.</p>
+                </div>
+                <div class="activities">
+                    <article class="activity"><span class="num">01 — BUILD</span>
+                        <h3>Projects & experiments</h3>
+                        <p>Turning ideas into prototypes, testing what works, and improving things one step at a time.
+                        </p>
+                    </article>
+                    <article class="activity"><span class="num">02 — EXPLORE</span>
+                        <h3>Web3 & communities</h3>
+                        <p>Taking part in crypto communities, discovering opportunities, and learning in public.</p>
+                    </article>
+                    <article class="activity"><span class="num">03 — SHARE</span>
+                        <h3>Content & ideas</h3>
+                        <p>Sharing thoughts, documenting progress, and connecting with people building interesting
+                            things.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section class="section" id="about" style="padding-top:0">
+            <div class="wrap">
+                <div class="about">
+                    <div>
+                        <p class="kicker" style="color:#8ec5ff">03 / About me</p>
+                        <h2>Still learning.<br>Still building.</h2>
+                        <p>I'm Noble — a creator and builder interested in Web3, digital projects, and turning ideas
+                            into things people can explore. This site is a living record of the journey. I'll keep
+                            adding to it as the work grows.</p>
+                    </div><a class="btn primary" href="https://x.com/nobleHQ__" target="_blank" rel="noopener">Let's
+                        connect on X ↗</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="wrap foot"><span>© <span id="year"></span> Noßle◈ · Built in public.</span><a
+                href="https://x.com/nobleHQ__" target="_blank" rel="noopener">@nobleHQ__ ↗</a></div>
+    </footer>
+    <script>const m = document.getElementById('menu'), l = document.getElementById('links'); m.addEventListener('click', () => l.classList.toggle('open')); l.querySelectorAll('a').forEach(a => a.addEventListener('click', () => l.classList.remove('open'))); document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+
+</html>
