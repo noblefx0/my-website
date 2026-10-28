@@ -4,13 +4,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="#10243b">
-    <title>Noßle◈ — Personal Site</title>
+    <meta name="theme-color" content="#071525">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <meta name="description"
+        content="Noßle◈ — Web3 creator and builder sharing creator campaigns, digital projects, and games.">
+    <title>Noßle◈ — Creator & Builder</title>
     <style>
         :root {
             --b: #3189f5;
-            --ink: #172438;
-            --muted: #647287
+            --ink: #f0f6ff;
+            --muted: #b5c5d8;
+            --panel: #0b1b2de8;
+            --line: #ffffff20;
         }
 
         * {
@@ -25,8 +33,9 @@
         body {
             margin: 0;
             font-family: Inter, system-ui, sans-serif;
-            background: #f5f8fc;
-            color: var(--ink)
+            background: #071525;
+            color: var(--ink);
+            overflow-x: hidden
         }
 
         a {
@@ -37,9 +46,18 @@
         .bg {
             position: fixed;
             inset: 0;
-            z-index: -1;
-            background: linear-gradient(120deg, #071525dd, #0c2946bb), url("assets/noble-teddy.png") center 40%/cover;
+            z-index: 0;
+            pointer-events: none;
+            background: linear-gradient(120deg, #071525ed, #0c2946d9), url("https://picturetolink.com/i/ng4iNqcnG3.jpg") center 40%/cover;
+            background-attachment: fixed;
             filter: blur(0px)
+        }
+
+        header,
+        main,
+        footer {
+            position: relative;
+            z-index: 1
         }
 
         header {
@@ -139,9 +157,11 @@
         }
 
         h1 {
-            font-size: clamp(3.5rem, 8vw, 6.5rem);
-            line-height: .92;
-            letter-spacing: -.09em;
+            font-family: "Space Grotesk", Inter, system-ui, sans-serif;
+            font-size: clamp(2rem, 6.4vw, 5rem);
+            line-height: 1.08;
+            letter-spacing: -.075em;
+            white-space: nowrap;
             margin: 20px 0
         }
 
@@ -243,7 +263,9 @@
         }
 
         .light-bg {
-            background: #f5f8fc
+            background: transparent;
+            border-top: 1px solid #ffffff0d;
+            border-bottom: 1px solid #ffffff0d
         }
 
         .head {
@@ -273,7 +295,7 @@
 
         .head>p {
             max-width: 420px;
-            color: var(--muted);
+            color: #c3d2e4;
             font-size: .9rem;
             line-height: 1.7;
             margin: 0
@@ -291,13 +313,33 @@
             max-width: 100%;
         }
 
+        .project-image {
+            display: block;
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 18px;
+        }
+
         .card,
         .activity {
-            background: #fff;
-            border: 1px solid #dce6f2;
+            min-width: 0;
+            overflow: hidden;
+            background: #0b1b2dd9;
+            border: 1px solid #ffffff1c;
             border-radius: 16px;
             padding: 22px;
-            box-shadow: 0 10px 30px #0d28400b
+            box-shadow: 0 14px 34px #0002;
+            backdrop-filter: blur(12px);
+            transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease
+        }
+
+        .card:hover,
+        .activity:hover {
+            transform: translateY(-4px);
+            border-color: #3189f577;
+            box-shadow: 0 18px 38px #0003
         }
 
         .cardtop {
@@ -313,16 +355,16 @@
             border-radius: 12px;
             display: grid;
             place-items: center;
-            background: #e8f2ff;
-            color: #176bc4;
+            background: #3189f526;
+            color: #9dcaff;
             font-size: 1.2rem
         }
 
         .tag {
             font-size: .64rem;
             font-weight: 900;
-            background: #edf5ff;
-            color: #2768a9;
+            background: #3189f526;
+            color: #9dcaff;
             border-radius: 20px;
             padding: 6px 8px
         }
@@ -336,7 +378,7 @@
         .card p,
         .activity p {
             margin: 0;
-            color: var(--muted);
+            color: #c3d2e4;
             font-size: .86rem;
             line-height: 1.7
         }
@@ -344,7 +386,7 @@
         .cardlink {
             display: inline-block;
             margin-top: 16px;
-            color: #176bc4;
+            color: #8fc4ff;
             font-size: .82rem;
             font-weight: 850
         }
@@ -353,6 +395,141 @@
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 14px
+        }
+
+        .creator-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 760px);
+            justify-content: center;
+            gap: 14px;
+        }
+
+        .creator-post {
+            display: grid;
+            grid-template-columns: 76px minmax(0, 1fr);
+            gap: 18px;
+            align-items: center;
+            width: 100%;
+            min-width: 0;
+            min-height: 150px;
+            padding: 22px;
+            border: 1px solid #ffffff20;
+            border-radius: 16px;
+            background: #0b1b2de8;
+            box-shadow: 0 14px 34px #0002;
+            backdrop-filter: blur(12px);
+            transition: transform .25s ease, border-color .25s ease;
+        }
+
+        .creator-post:hover {
+            transform: translateY(-3px);
+            border-color: #3189f577;
+        }
+
+        .creator-post-mark {
+            display: grid;
+            place-items: center;
+            width: 76px;
+            height: 76px;
+            border: 1px solid #ffffff20;
+            border-radius: 15px;
+            background: linear-gradient(145deg, #14385b, #0a1a2b);
+            color: #9dcaff;
+            font-size: 1.7rem;
+            font-weight: 800;
+        }
+
+        .creator-post-content {
+            min-width: 0;
+        }
+
+        .creator-post-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 8px;
+            color: #a9c9ed;
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .creator-post h3 {
+            margin: 0 0 7px;
+            font-size: 1.12rem;
+            letter-spacing: -.025em;
+        }
+
+        .creator-post p {
+            margin: 0;
+            color: #c3d2e4;
+            font-size: .86rem;
+            line-height: 1.65;
+        }
+
+        .creator-post-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            color: #8fc4ff;
+            font-size: .82rem;
+            font-weight: 850;
+        }
+
+        .creator-note {
+            max-width: 760px;
+            margin: 16px auto 0;
+            color: #aebfd4;
+            font-size: .78rem;
+            line-height: 1.6;
+        }
+
+        .collab {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            padding: clamp(24px, 5vw, 42px);
+            border: 1px solid #3189f54d;
+            border-radius: 20px;
+            background: linear-gradient(120deg, #0b1b2df2, #102d49e8);
+            box-shadow: 0 18px 42px #0002;
+        }
+
+        .collab h2 {
+            margin: 8px 0 12px;
+            font-size: clamp(1.8rem, 4.5vw, 2.7rem);
+            line-height: 1.08;
+            letter-spacing: -.06em;
+        }
+
+        .collab p {
+            max-width: 620px;
+            margin: 0;
+            color: #c3d2e4;
+            font-size: .9rem;
+            line-height: 1.7;
+        }
+
+        .collab-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .65s ease, transform .65s ease
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0)
         }
 
         .activity .num {
@@ -367,7 +544,7 @@
         }
 
         .about {
-            background: #102b49;
+            background: #0b1b2de8;
             color: white;
             border-radius: 20px;
             padding: clamp(25px, 5vw, 45px);
@@ -395,6 +572,7 @@
         footer {
             padding: 25px 0;
             color: #d6e4f3;
+            border-top: 1px solid #ffffff16;
             font-size: .78rem
         }
 
@@ -420,18 +598,6 @@
 
             .menu {
                 display: block
-            }
-
-
-            .project-image {
-                display: block;
-                width: 100%;
-                max-width: 100%;
-                height: 180px;
-                object-fit: cover;
-                border-radius: 12px;
-                margin-bottom: 16px;
-                box-sizing: border-box;
             }
 
 
@@ -470,7 +636,8 @@
             }
 
             h1 {
-                font-size: clamp(3.6rem, 16vw, 5.5rem)
+                font-size: clamp(1.9rem, 8.5vw, 3.6rem);
+                letter-spacing: -.07em
             }
 
             .profile {
@@ -500,6 +667,38 @@
                 grid-template-columns: 1fr
             }
 
+            .creator-grid {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 10px;
+            }
+
+            .creator-post {
+                grid-template-columns: 54px minmax(0, 1fr);
+                gap: 13px;
+                min-height: 0;
+                padding: 15px;
+                border-radius: 13px;
+            }
+
+            .creator-post-mark {
+                width: 54px;
+                height: 54px;
+                border-radius: 12px;
+                font-size: 1.35rem;
+            }
+
+            .project-image {
+                height: 180px;
+            }
+
+            .collab {
+                display: block;
+            }
+
+            .collab-actions {
+                margin-top: 20px;
+            }
+
             .about {
                 display: block
             }
@@ -513,9 +712,35 @@
             }
         }
 
+        @media(max-width:380px) {
+            .creator-post {
+                grid-template-columns: 42px minmax(0, 1fr);
+                gap: 10px;
+                padding: 12px;
+            }
+
+            .creator-post-mark {
+                width: 42px;
+                height: 42px;
+                font-size: 1.1rem;
+            }
+        }
+
         @media(prefers-reduced-motion:reduce) {
             html {
                 scroll-behavior: auto
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none
+            }
+
+            .card,
+            .activity,
+            .creator-post {
+                transition: none
             }
         }
     </style>
@@ -524,21 +749,22 @@
 <body>
     <div class="bg"></div>
     <header>
-        <div class="wrap nav"><a class="brand" href="#home"><span class="mark">◈</span>Noßle◈</a><button class="menu"
+        <div class="wrap nav"><a class="brand" href="#home"><span class="mark">◈</span>Noßle HQ◈</a><button class="menu"
                 id="menu">Menu ☰</button>
-            <nav class="links" id="links"><a href="#work">Featured work</a><a href="#activities">Activities</a><a
-                    href="#about">About</a><a class="follow" href="https://x.com/nobleHQ__" target="_blank"
-                    rel="noopener">Follow on X ↗</a></nav>
+            <nav class="links" id="links"><a href="#work">Featured work</a><a href="#creator-highlights">Creator
+                    highlights</a><a href="#activities">Activities</a><a href="#about">About</a><a class="follow"
+                    href="https://x.com/nobleHQ__" target="_blank" rel="noopener">Follow on X ↗</a></nav>
         </div>
     </header>
     <main id="home">
         <section class="wrap hero">
             <div>
-                <div class="eyebrow"><i></i>Creator · Builder · Work in progress</div>
-                <h1>Hey, I'm<br><span>Noßle◈</span></h1>
-                <p class="intro">I build things, explore Web3, and share what I learn along the way. This is my corner
-                    of the internet — a home for my projects, experiments, and proof of work.</p>
-                <div class="actions"><a class="btn primary" href="#work">Explore my work ↓</a><a class="btn outline"
+                <div class="eyebrow"><i></i>Web3 creator · Builder</div>
+                <h1>Hey, I'm <span>Noßle◈</span></h1>
+                <p class="intro">I create around Web3, work with projects I believe in, and build games and digital
+                    experiments. This is where my creator work and things I'm building come together.</p>
+                <div class="actions"><a class="btn primary" href="#work">Explore my projects ↓</a><a class="btn outline"
+                        href="#creator-highlights">Creator highlights ↘</a><a class="btn outline"
                         href="https://x.com/nobleHQ__" target="_blank" rel="noopener">Find me on X ↗</a></div>
             </div>
             <aside class="profile">
@@ -554,7 +780,7 @@
                 </div>
             </aside>
         </section>
-        <section class="section light-bg" id="work">
+        <section class="section light-bg reveal" id="work">
             <div class="wrap">
                 <div class="head">
                     <div>
@@ -582,7 +808,7 @@
                         </p>
 
                         <a class="cardlink" href="https://noblefx0.github.io/bottle-flip-game/" target="_blank"
-                            rel="noopener">Follow the
+                            rel="noopener">Play the
                             build ↗</a>
                     </article>
 
@@ -615,11 +841,59 @@
                 </div>
             </div>
         </section>
-        <section class="section" id="activities">
+
+        <section class="section reveal" id="creator-highlights">
             <div class="wrap">
                 <div class="head">
                     <div>
-                        <p class="kicker">02 / What I do</p>
+                        <p class="kicker">02 / Posts & collaborations</p>
+                        <h2>Creator <span class="blue">highlights.</span></h2>
+                    </div>
+                    <p>A collection of posts, ideas, promotions, and collaborations I've shared on X.</p>
+                </div>
+                <div class="creator-grid" id="creator-posts">
+                    <article class="creator-post">
+                        <div class="creator-post-mark" aria-hidden="true">◈</div>
+                        <div class="creator-post-content">
+                            <div class="creator-post-meta"><span>Creator campaign</span><span>·</span><span>Web3</span>
+                            </div>
+                            <h3>Dope.xyz</h3>
+                            <p>A creator highlight from my Web3 content and campaign work.</p>
+                            <a class="creator-post-link" href="https://x.com/nobleHQ__/status/2114089280020619376"
+                                target="_blank" rel="noopener noreferrer">View original on X ↗</a>
+                        </div>
+                    </article>
+                    <article class="creator-post">
+                        <div class="creator-post-mark" aria-hidden="true">✳</div>
+                        <div class="creator-post-content">
+                            <div class="creator-post-meta"><span>Brand collaboration</span><span>·</span><span>Gift
+                                    cards</span></div>
+                            <h3>CardRadar × CardBoss</h3>
+                            <p>A campaign post introducing the CardBoss gift-card trading experience.</p>
+                            <a class="creator-post-link" href="https://x.com/nobleHQ__/status/2112455986220777781"
+                                target="_blank" rel="noopener noreferrer">View original on X ↗</a>
+                        </div>
+                    </article>
+                    <article class="creator-post">
+                        <div class="creator-post-mark" aria-hidden="true">▶</div>
+                        <div class="creator-post-content">
+                            <div class="creator-post-meta"><span>Video post</span><span>·</span><span>Promotion</span>
+                            </div>
+                            <h3>CadeMarket</h3>
+                            <p>A video-based creator promotion. Open the original post to watch the video.</p>
+                            <a class="creator-post-link" href="https://x.com/nobleHQ__/status/2089066532055679267"
+                                target="_blank" rel="noopener noreferrer">Watch on X ↗</a>
+                        </div>
+                    </article>
+                </div>
+                <p class="creator-note">Use the links to open the full post or watch its video on X.</p>
+            </div>
+        </section>
+        <section class="section reveal" id="activities">
+            <div class="wrap">
+                <div class="head">
+                    <div>
+                        <p class="kicker">03 / What I do</p>
                         <h2>A little bit of <span class="blue">everything.</span></h2>
                     </div>
                     <p>The main themes behind what I spend time creating and contributing to.</p>
@@ -642,15 +916,33 @@
                 </div>
             </div>
         </section>
-        <section class="section" id="about" style="padding-top:0">
+        <section class="section reveal" id="contact">
+            <div class="wrap">
+                <div class="collab">
+                    <div>
+                        <p class="kicker">05 / Let's work together</p>
+                        <h2>Got something <span class="blue">interesting?</span></h2>
+                        <p>Open to Web3 creator campaigns, brand collaborations, and building fun digital projects. If
+                            there's a good fit, let's talk.</p>
+                    </div>
+                    <div class="collab-actions">
+                        <a class="btn primary" href="https://x.com/nobleHQ__" target="_blank" rel="noopener">DM me on X
+                            ↗</a>
+                        <a class="btn outline" href="#work">See my projects ↓</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section reveal" id="about" style="padding-top:0">
             <div class="wrap">
                 <div class="about">
                     <div>
-                        <p class="kicker" style="color:#8ec5ff">03 / About me</p>
+                        <p class="kicker" style="color:#8ec5ff">06 / About me</p>
                         <h2>Still learning.<br>Still building.</h2>
-                        <p>I'm Noble — a creator and builder interested in Web3, digital projects, and turning ideas
-                            into things people can explore. This site is a living record of the journey. I'll keep
-                            adding to it as the work grows.</p>
+                        <p>I'm Noble, a Web3 creator and builder interested in digital projects, online communities, and
+                            turning ideas into things people can actually explore. This site brings my creator work and
+                            building journey together, and I'll keep updating it as I make progress.</p>
                     </div><a class="btn primary" href="https://x.com/nobleHQ__" target="_blank" rel="noopener">Let's
                         connect on X ↗</a>
                 </div>
@@ -661,7 +953,33 @@
         <div class="wrap foot"><span>© <span id="year"></span> Noßle◈ · Built in public.</span><a
                 href="https://x.com/nobleHQ__" target="_blank" rel="noopener">@nobleHQ__ ↗</a></div>
     </footer>
-    <script>const m = document.getElementById('menu'), l = document.getElementById('links'); m.addEventListener('click', () => l.classList.toggle('open')); l.querySelectorAll('a').forEach(a => a.addEventListener('click', () => l.classList.remove('open'))); document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script>
+        const menuButton = document.getElementById("menu");
+        const navLinks = document.getElementById("links");
+
+        menuButton.addEventListener("click", () => navLinks.classList.toggle("open"));
+        navLinks.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => navLinks.classList.remove("open"));
+        });
+
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Subtle scroll-in animation, with a graceful fallback for older browsers.
+        const revealSections = document.querySelectorAll(".reveal");
+        if ("IntersectionObserver" in window) {
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.08 });
+            revealSections.forEach(section => revealObserver.observe(section));
+        } else {
+            revealSections.forEach(section => section.classList.add("visible"));
+        }
+    </script>
 </body>
 
 </html>
